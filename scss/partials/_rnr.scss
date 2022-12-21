@@ -1,0 +1,38 @@
+.rnr {
+  background: rgba(0, 0, 0, 0.1);
+  border-top: 0.25em solid #000;
+  margin: 1em -1em;
+  padding: 0 1em 1em 1em;
+
+  &:before {
+    content: 'Ruins & Revolutions';
+    font-family: 'Alegreya SC', serif;
+    font-size: 0.75em;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .rnr-species {
+    margin: 1em -1em -1em;
+    width: calc(100% + 2em);
+
+    th {
+      border-bottom: none;
+    }
+
+    th,
+    td,
+    tr:nth-child(even) td {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    th[colspan] {
+      background: #000;
+      color: #fff;
+    }
+
+    & + .rnr-species {
+      margin-top: 2em;
+    }
+  }
+}

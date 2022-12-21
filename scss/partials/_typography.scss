@@ -1,0 +1,61 @@
+html {
+  font-family: 'Alegreya', serif;
+}
+
+body {
+  @media (min-width: 30em) {
+    font-size: 1.1em;
+  }
+
+  @media (min-width: 40em) {
+    font-size: 1.2em;
+  }
+
+  @media (min-width: 50em) {
+    font-size: 1.3em;
+  }
+
+  @media (min-width: 60em) {
+    font-size: 1.4em;
+  }
+
+  @media (min-width: 70em) {
+    font-size: 1.5em;
+  }
+
+  @media (min-width: 80em) {
+    font-size: 1.6em;
+  }
+
+  @media (min-width: 90em) {
+    font-size: 1.7em;
+  }
+
+  @media (min-width: 100em) {
+    font-size: 1.8em;
+  }
+
+  @media (min-width: 110em) {
+    font-size: 1.9em;
+  }
+
+  @media (min-width: 120em) {
+    font-size: 2em;
+  }
+
+  @media (min-width: 130em) {
+    font-size: 2em;
+  }
+}
+
+label,
+select,
+input,
+table {
+  font-family: "Alegreya Sans", sans-serif;
+  font-size: 1em;
+}
+
+label {
+  font-weight: bold;
+}

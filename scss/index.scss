@@ -1,0 +1,15 @@
+@use 'partials/atoms';
+@use 'partials/typography';
+@use 'partials/layout';
+
+// Major page sections
+@use 'partials/header';
+@use 'partials/categories';
+
+// Minor components
+@use 'partials/main';
+@use 'partials/timeline';
+@use 'partials/rnr';
+
+// Special pages
+@use 'partials/home';

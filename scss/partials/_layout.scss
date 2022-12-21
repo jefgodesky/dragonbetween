@@ -1,0 +1,21 @@
+@use '../modules/placeholders';
+
+body {
+  background-color: #fff;
+  background-image: url('/img/top.png'), url('/img/bottom.png');
+  background-position: top center, bottom center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  min-height: 100vh;
+  padding-bottom: 8em;
+
+  @media (max-aspect-ratio: 3/1) {
+    background-size: contain, contain;
+  }
+}
+
+header,
+main,
+footer {
+  @extend %layedout;
+}

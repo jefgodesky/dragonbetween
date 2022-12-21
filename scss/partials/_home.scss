@@ -1,0 +1,27 @@
+.home .current-campaign {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+
+  h2 {
+    align-items: center;
+    display: flex;
+    font-family: 'Alegreya SC', serif;
+    font-size: 1em;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+
+    &:before,
+    &:after {
+      border-top: 2px solid rgba(0, 0, 0, 0.5);
+      content: ' ';
+      flex: 1 0 1em;
+      margin: 0 1em 0 0;
+    }
+
+    &:after {
+      margin: 0 0 0 1em;
+    }
+  }
+}

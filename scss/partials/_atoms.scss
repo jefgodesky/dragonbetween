@@ -1,3 +1,22 @@
+a {
+  @media (prefers-color-scheme: dark) {
+    color: #add8e6;
+
+    &:hover,
+    &:focus {
+      color: #e8f4f8;
+    }
+
+    &:active {
+      color: #e6adbc;
+    }
+
+    &:visited {
+      color: #e6add8;
+    }
+  }
+}
+
 img {
   display: block;
   margin: 1em auto;

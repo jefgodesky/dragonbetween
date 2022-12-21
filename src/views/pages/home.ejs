@@ -3,8 +3,22 @@
   <%- include('../partials/head') %>
   <body>
     <%- include('../partials/header') %>
-    <main>
-      <h1>Hello, Eberron!</h1>
+    <main class="home">
+      <p><em>This website records the lore of one iteration of the world of <a href='/eberron'>Eberron</a>.
+          There are many Eberrons, but this one is ours.</em></p>
+      <section class="current-campaign">
+        <h2>Current Campaign</h2>
+        <picture>
+          <source srcset="/images/campaigns/sword-and-shield.dark.png" media="(prefers-color-scheme: dark)" />
+          <img src="/images/campaigns/sword-and-shield.light.png" alt="Eberron: Sword & Shield" />
+        </picture>
+        <p><em>Two years after the signing of the <a href='/lore/treaty-of-thronehold'>Treaty of Thronehold</a>,
+            a few <a href='/lore/brelish-culture'>Brelish</a> patriots in <a href='/lore/sharn'>Sharn</a> seek to
+            join the <a href='/lore/swords-of-liberty'>Swords of Liberty</a> to end the
+            <a href='/lore/monarchy'>monarchy</a> once and for all. It is the beginning of a tale of radicals and
+            revolution that will change the City of Towers &mdash; and <a href='/lore/eberron'>Eberron</a> &mdash;
+            forever.</em></p>
+      </section>
     </main>
   </body>
 </html>

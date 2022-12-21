@@ -1,10 +1,13 @@
 {
   "name": "dragonbetween",
   "version": "1.0.0",
+  "type": "module",
   "description": "Server for the Dragon Between website [https://dragonbetween.net]",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc"
   },
   "repository": {
     "type": "git",

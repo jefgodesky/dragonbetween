@@ -1,5 +1,6 @@
 # Built files
 dist
+public/style.css
 
 # Logs
 logs

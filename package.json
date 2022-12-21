@@ -5,9 +5,12 @@
   "description": "Server for the Dragon Between website [https://dragonbetween.net]",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "npm-run-all build serve",
     "test": "mocha --require ts-node/register",
-    "build": "npx tsc",
+    "serve": "node dist/index.js",
+    "build": "npm-run-all build:ts build:scss",
+    "build:ts": "npx tsc",
+    "build:scss": "node sass.mjs",
     "dev": "npm-run-all --parallel dev:build dev:serve",
     "dev:build": "npx tsc --watch",
     "dev:serve": "nodemon -q dist/index.js"

@@ -16,7 +16,10 @@
     "type": "git",
     "url": "git+https://github.com/jefgodesky/dragonbetween.git"
   },
-  "author": "Jason Godesky <jason@dragonbetween.net>",
+  "author": {
+    "name": "Jason Godesky",
+    "email": "jason@dragonbetween.net"
+  },
   "license": "GPL-3.0-only",
   "bugs": {
     "url": "https://github.com/jefgodesky/dragonbetween/issues"

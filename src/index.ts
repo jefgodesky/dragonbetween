@@ -9,6 +9,7 @@ dotenv.config()
 const app = express()
 const port = process.env.PORT
 
+app.use(express.static('public'))
 app.set('view engine', 'ejs')
 app.set('views', join(__dirname, '../src/views'))
 

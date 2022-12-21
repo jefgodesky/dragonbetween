@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --require ts-node/register",
     "build": "npx tsc",
     "dev": "npm-run-all --parallel dev:build dev:serve",
     "dev:build": "npx tsc --watch",

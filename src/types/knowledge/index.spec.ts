@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { isKnowledge } from './knowledge.js'
+import { isKnowledge } from './index.js'
 
 describe('Knowledge', () => {
   it('returns false if given null', () => {

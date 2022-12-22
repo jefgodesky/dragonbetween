@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { isHeadInfo } from './head-info.js'
+import { isHeadInfo } from './index.js'
 
 describe('isHeadInfo', () => {
   it('rejects null', () => {

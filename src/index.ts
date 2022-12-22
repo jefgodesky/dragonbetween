@@ -2,6 +2,7 @@ import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
 import express, { Request, Response } from 'express'
 import dotenv from 'dotenv'
+import getDefaultHeadInfo from './types/head-info/get-default-head-info.js'
 
 const thisdir = dirname(fileURLToPath(import.meta.url))
 dotenv.config()
@@ -14,16 +15,8 @@ app.set('view engine', 'ejs')
 app.set('views', join(thisdir, '../src/views'))
 
 app.get('/', (req: Request, res: Response) => {
-  const title = 'The Dragon Between'
-  const description = 'Welcome to Eberron.'
-  const url = 'https://dragonbetween.net'
-  const image = '/images/social.jpg'
-  res.render('pages/home', {
-    title,
-    description,
-    twitter: { title, description, image },
-    og: { title, description, image, url }
-  })
+  const info = getDefaultHeadInfo()
+  res.render('pages/home', info)
 })
 
 app.listen(port, () => {

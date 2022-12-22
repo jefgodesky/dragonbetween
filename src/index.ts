@@ -3,15 +3,15 @@ import { fileURLToPath } from 'url'
 import express, { Request, Response } from 'express'
 import dotenv from 'dotenv'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const thisdir = dirname(fileURLToPath(import.meta.url))
 dotenv.config()
 
 const app = express()
-const port = process.env.PORT
+const port = process.env.PORT ?? 3000
 
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
-app.set('views', join(__dirname, '../src/views'))
+app.set('views', join(thisdir, '../src/views'))
 
 app.get('/', (req: Request, res: Response) => {
   const title = 'The Dragon Between'

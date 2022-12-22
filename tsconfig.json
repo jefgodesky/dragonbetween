@@ -12,7 +12,7 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "typeRoots": [
-      "./src/types",
+      "./src/types/express",
       "./node_modules/@types"
     ]
   },

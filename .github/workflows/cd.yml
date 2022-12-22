@@ -1,0 +1,46 @@
+name: Dragon Between Continuous Deployment
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Run linters and tests
+        run: npm run check
+  deploy:
+    name: Deploy to dragonbetween.net
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Establish SSH connection
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.DRAGONBETWEEN_SSH_KEY }}
+      - name: Add to known hosts
+        run: ssh-keyscan -H ${{ secrets.DRAGONBETWEEN_SSH_HOST }} >> ~/.ssh/known_hosts
+      - name: Stop old app
+        run: ssh ${{ secrets.DRAGONBETWEEN_SSH_USER }}@${{ secrets.DRAGONBETWEEN_SSH_HOST }} "pm2 delete dragonbetween"
+        continue-on-error: true
+      - name: Delete old app
+        run: ssh ${{ secrets.DRAGONBETWEEN_SSH_USER }}@${{ secrets.DRAGONBETWEEN_SSH_HOST }} "rm -Rf /home/deployer/dragonbetween"
+        continue-on-error: true
+      - name: Build the app
+        run: ssh ${{ secrets.DRAGONBETWEEN_SSH_USER }}@${{ secrets.DRAGONBETWEEN_SSH_HOST }} "cd /home/deployer && git clone https://github.com/jefgodesky/dragonbetween.git && cd dragonbetween && npm install"
+      - name: Start app
+        run: ssh ${{ secrets.DRAGONBETWEEN_SSH_USER }}@${{ secrets.DRAGONBETWEEN_SSH_HOST }} "cd /home/deployer/dragonbetween && pm2 start npm --name dragonbetween -- start"

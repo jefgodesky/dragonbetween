@@ -10,6 +10,10 @@ describe('isHeadInfo', () => {
     expect(isHeadInfo(undefined)).to.equal(false)
   })
 
+  it('rejects a function', () => {
+    expect(isHeadInfo(() => {})).to.equal(false)
+  })
+
   it('rejects true', () => {
     expect(isHeadInfo(true)).to.equal(false)
   })
@@ -40,6 +44,10 @@ describe('isHeadInfo', () => {
 
   it('accepts an object with title set to undefined', () => {
     expect(isHeadInfo({ title: undefined })).to.equal(true)
+  })
+
+  it('rejects an object with title set to a function', () => {
+    expect(isHeadInfo({ title: () => {} })).to.equal(false)
   })
 
   it('rejects an object with title set to true', () => {
@@ -74,6 +82,10 @@ describe('isHeadInfo', () => {
     expect(isHeadInfo({ description: undefined })).to.equal(true)
   })
 
+  it('rejects an object with description set to a function', () => {
+    expect(isHeadInfo({ description: () => {} })).to.equal(false)
+  })
+
   it('rejects an object with description set to true', () => {
     expect(isHeadInfo({ description: true })).to.equal(false)
   })
@@ -106,6 +118,10 @@ describe('isHeadInfo', () => {
     expect(isHeadInfo({ url: undefined })).to.equal(true)
   })
 
+  it('rejects an object with url set to a function', () => {
+    expect(isHeadInfo({ url: () => {} })).to.equal(false)
+  })
+
   it('rejects an object with url set to true', () => {
     expect(isHeadInfo({ url: true })).to.equal(false)
   })
@@ -136,6 +152,10 @@ describe('isHeadInfo', () => {
 
   it('accepts an object with image set to undefined', () => {
     expect(isHeadInfo({ image: undefined })).to.equal(true)
+  })
+
+  it('rejects an object with image set to a function', () => {
+    expect(isHeadInfo({ image: () => {} })).to.equal(false)
   })
 
   it('rejects an object with image set to true', () => {

@@ -16,8 +16,8 @@ export default async function getCharacters (): Promise<Character[]> {
     const knowledgeRecords = record.expand['knowledge(character)']
     const secrets = knowledgeRecords === undefined ? [] : knowledgeRecords.map((record: Record) => record.expand.secret).map((record: Record) => record.key)
     const knowledge = await getKnowledge(...secrets)
-    const { name, strength, dexterity, constitution, intelligence, wisdom, charisma } = record
-    characters.push({ name, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma })
+    const { id, name, strength, dexterity, constitution, intelligence, wisdom, charisma } = record
+    characters.push({ id, name, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma })
   }
   return characters
 }

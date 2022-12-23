@@ -24,6 +24,15 @@
         vertical-align: baseline;
         width: 0.75em;
       }
+
+      &.disabled {
+        color: #ccc;
+        cursor: not-allowed;
+
+        svg {
+          fill: #ccc;
+        }
+      }
     }
 
     .google {
@@ -37,6 +46,10 @@
       &:active {
         background: #b72c21;
       }
+
+      &.disabled {
+        background: #888;
+      }
     }
 
     .discord {
@@ -49,6 +62,10 @@
 
       &:active {
         background: #3556ca;
+      }
+
+      &.disabled {
+        background: #888;
       }
     }
   }

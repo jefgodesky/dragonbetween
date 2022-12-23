@@ -1,6 +1,7 @@
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
 import express, { Request, Response } from 'express'
+import expressAsyncHandler from 'express-async-handler'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import pb from './connect.js'
@@ -34,7 +35,7 @@ app.get('/logout', (req: Request, res: Response) => {
   res.redirect('/login')
 })
 
-app.post('/login', async (req: Request, res: Response) => {
+app.post('/login', expressAsyncHandler(async (req: Request, res: Response) => {
   const { username, password } = req.body
   try {
     await pb.collection('users').authWithPassword(username, password)
@@ -48,7 +49,7 @@ app.post('/login', async (req: Request, res: Response) => {
     }
   }
   res.redirect('/')
-})
+}))
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`)

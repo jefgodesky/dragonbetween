@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import pb from './connect.js'
 import getDefaultHeadInfo from './types/head-info/get-default-head-info.js'
+import getCharacters from './middlewares/get-characters.js'
 
 const thisdir = dirname(fileURLToPath(import.meta.url))
 dotenv.config()
@@ -20,12 +21,12 @@ app.use(express.static('public'))
 app.set('view engine', 'ejs')
 app.set('views', join(thisdir, '../src/views'))
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/', getCharacters, (req: Request, res: Response) => {
   const info = getDefaultHeadInfo()
   res.render('pages/home', info)
 })
 
-app.get('/login', (req: Request, res: Response) => {
+app.get('/login', getCharacters, (req: Request, res: Response) => {
   const info = getDefaultHeadInfo()
   res.render('pages/login', info)
 })

@@ -29,9 +29,24 @@ app.get('/login', (req: Request, res: Response) => {
   res.render('pages/login', info)
 })
 
+app.get('/logout', (req: Request, res: Response) => {
+  pb.authStore.clear()
+  res.redirect('/login')
+})
+
 app.post('/login', async (req: Request, res: Response) => {
   const { username, password } = req.body
-  await pb.collection('users').authWithPassword(username, password)
+  try {
+    await pb.collection('users').authWithPassword(username, password)
+  } catch (err: any) {
+    if (err.status === 400) {
+      try {
+        await pb.admins.authWithPassword(username, password)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+  }
   res.redirect('/')
 })
 

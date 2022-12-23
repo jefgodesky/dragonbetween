@@ -51,19 +51,6 @@
         background: #3556ca;
       }
     }
-
-    .github {
-      background: #333;
-
-      &:hover,
-      &:focus {
-        background: #666;
-      }
-
-      &:active {
-        background: #000;
-      }
-    }
   }
 
   @media (min-width: 40em) {

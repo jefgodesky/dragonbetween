@@ -1,5 +1,5 @@
-import Character from '../character.js'
-import HeadInfo from '../head-info.js'
+import Character from '../../interfaces/character/index.js'
+import HeadInfo from '../../interfaces/head-info/index.js'
 
 declare global {
   namespace Express {

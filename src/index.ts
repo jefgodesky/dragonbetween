@@ -5,7 +5,7 @@ import expressAsyncHandler from 'express-async-handler'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import pb from './connect.js'
-import getDefaultHeadInfo from './types/head-info/get-default-head-info.js'
+import getDefaultHeadInfo from './interfaces/head-info/get-default-head-info.js'
 import getCharacters from './middlewares/get-characters.js'
 
 const thisdir = dirname(fileURLToPath(import.meta.url))

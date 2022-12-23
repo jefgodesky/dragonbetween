@@ -1,6 +1,7 @@
 import Knowledge, { isKnowledge } from '../knowledge/index.js'
 
 interface Character {
+  id?: string
   name: string
   knowledge: Knowledge
   strength: number
@@ -13,7 +14,8 @@ interface Character {
 
 const isCharacter = (obj: any): obj is Character => {
   if (obj === null || Array.isArray(obj) || typeof obj !== 'object') return false
-  const { name, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma } = obj
+  const { id, name, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma } = obj
+  if (id !== undefined && typeof id !== 'string') return false
   if (name === undefined || typeof name !== 'string') return false
   if (!isKnowledge(knowledge)) return false
   const scores = [strength, dexterity, constitution, intelligence, wisdom, charisma]

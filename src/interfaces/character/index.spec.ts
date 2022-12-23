@@ -2,6 +2,7 @@ import { expect } from 'chai'
 import { isCharacter } from './index.js'
 
 describe('isCharacter', () => {
+  const id = 'abc123'
   const name = 'Joe Average'
   const knowledge = {}
   const strength = 10
@@ -50,6 +51,51 @@ describe('isCharacter', () => {
   it('accepts an object with all required fields', () => {
     const char = { name, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
     expect(isCharacter(char)).to.equal(true)
+  })
+
+  it('rejects a character with null for an ID', () => {
+    const char = { id: null, name, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(false)
+  })
+
+  it('accepts a character with undefined for an ID', () => {
+    const char = { id: undefined, name, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(true)
+  })
+
+  it('rejects a character with a function for an ID', () => {
+    const char = { id: () => {}, name, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(false)
+  })
+
+  it('rejects a character with true for an ID', () => {
+    const char = { id: true, name, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(false)
+  })
+
+  it('rejects a character with false for an ID', () => {
+    const char = { id: false, name, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(false)
+  })
+
+  it('rejects a character with a number for an ID', () => {
+    const char = { id: 24601, name, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(false)
+  })
+
+  it('accepts a character with a string for an ID', () => {
+    const char = { id, name, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(true)
+  })
+
+  it('rejects a character with an array for an ID', () => {
+    const char = { id: id.split(''), name, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(false)
+  })
+
+  it('rejects a character with an object for an ID', () => {
+    const char = { id: { id }, name, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(false)
   })
 
   it('rejects a character with null for a name', () => {

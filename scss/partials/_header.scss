@@ -17,9 +17,12 @@ header {
       }
     }
 
-    .search button {
-      padding: 0.333em 1em;
-      vertical-align: middle;
+    .search {
+      display: flex;
+
+      input {
+        margin: 0 0.5em 0 0;
+      }
     }
 
     @media (min-width: 40em) {

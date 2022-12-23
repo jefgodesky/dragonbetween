@@ -1,6 +1,7 @@
 @use 'partials/atoms';
 @use 'partials/typography';
 @use 'partials/layout';
+@use 'partials/forms';
 
 // Major page sections
 @use 'partials/header';
@@ -13,3 +14,4 @@
 
 // Special pages
 @use 'partials/home';
+@use 'partials/login';

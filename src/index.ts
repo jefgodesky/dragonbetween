@@ -19,6 +19,11 @@ app.get('/', (req: Request, res: Response) => {
   res.render('pages/home', info)
 })
 
+app.get('/login', (req: Request, res: Response) => {
+  const info = getDefaultHeadInfo()
+  res.render('pages/login', info)
+})
+
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`)
 })

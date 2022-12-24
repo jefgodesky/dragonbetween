@@ -5,6 +5,8 @@ import expressAsyncHandler from 'express-async-handler'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import pb from './connect.js'
+import clear from './logic/clear.js'
+import renderMarkdown from './logic/renderers/markdown.js'
 
 import addKnowledge from './middlewares/add-knowledge.js'
 import browse from './middlewares/browse.js'
@@ -38,6 +40,22 @@ app.get('/logout', (req: Request, res: Response) => {
 })
 
 app.get('/lore', initViewInfo, getCharacters, addKnowledge, browse)
+
+app.get('/lore/:slug', initViewInfo, getCharacters, addKnowledge, expressAsyncHandler(async (req: Request, res: Response) => {
+  const knowledge = req.knowledge ?? {}
+  const topic = await pb.collection('lore_topics')
+    .getFirstListItem(`slug = "${req.params.slug ?? ''}"`, { expand: 'lore_text(topic)' })
+  const known = clear(knowledge, topic.secret === '' ? 'true' : topic.secret)
+  const texts = topic.expand['lore_text(topic)'] === undefined
+    ? []
+    : topic.expand['lore_text(topic)']
+      .sort((a: any, b: any) => a.priority - b.priority)
+      .filter((text: any) => clear(knowledge, text.secret === '' ? 'true' : text.secret))
+  const title = known ? topic.title : 'What&rsquo;s that?'
+  const text = known && texts.length > 0 ? await renderMarkdown(texts[0].text) : '<p>You&rsquo;ve never heard of such a thing.</p>'
+  req.viewInfo.lore = { title, text }
+  res.render('pages/lore', req.viewInfo)
+}))
 
 app.get('/categories', initViewInfo, getCharacters, addKnowledge, browse)
 

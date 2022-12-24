@@ -14,6 +14,10 @@ declare global {
         characters?: Character[]
         headInfo: HeadInfo
         browse?: Array<{ url: string, label: string }>
+        lore?: {
+          title: string
+          text: string
+        }
       }
     }
   }

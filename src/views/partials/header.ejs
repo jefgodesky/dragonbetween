@@ -21,12 +21,18 @@
         <label for="pov">POV</label>
         <div class="input-button-combo">
           <select name="pov" id="pov">
-            <option>Outsider</option>
+            <option>
+              Outsider
+            </option>
             <% for (const char of characters) { %>
-              <option value="<%= char.id %>"><%= char.name %></option>
+              <option value="<%= char.id %>"<% if (pov === char.id) { %> selected="selected"<% } %>>
+                <%= char.name %>
+              </option>
             <% } %>
             <% if (gm) { %>
-              <option value="gm">Game Master</option>
+              <option value="gm"<% if (pov === 'gm') { %> selected="selected"<% } %>>
+                Game Master
+              </option>
             <% } %>
           </select>
           <button>Perceive</button>

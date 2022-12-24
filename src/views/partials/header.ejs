@@ -5,7 +5,11 @@
       <button>Go</button>
     </form>
     <div class="pov-select">
-      <a href="/login">Log in</a>
+      <% if (authenticated) { %>
+        <a href="/logout">Log out</a>
+      <% } else { %>
+        <a href="/login">Log in</a>
+      <% } %>
     </div>
   </nav>
   <h1>

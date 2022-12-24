@@ -7,6 +7,7 @@ declare global {
       viewInfo: {
         authenticated: boolean
         gm: boolean
+        pov: string
         returnUrl: string
         characters?: Character[]
         headInfo: HeadInfo

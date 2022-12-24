@@ -44,6 +44,14 @@ app.post('/login', expressAsyncHandler(async (req: Request, res: Response) => {
   res.redirect(req.query.returnUrl as string ?? '/')
 }))
 
+app.post('/pov', expressAsyncHandler(async (req: Request, res: Response) => {
+  const { pov, returnUrl } = req.body
+  if (pb.authStore.isValid && pb.authStore.model !== null && (pov !== 'gm' || pb.authStore.model.gm === true)) {
+    await pb.collection('users').update(pb.authStore.model.id, { pov })
+  }
+  res.redirect(returnUrl as string ?? '/')
+}))
+
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`)
 })

@@ -1,8 +1,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title><%= title %></title>
-  <meta name="description" content="<%= description %>" />
+  <title><%= headInfo.title %></title>
+  <meta name="description" content="<%= headInfo.description %>" />
+  <link rel="canonical" href="<%= headInfo.url %>" />
   <link rel="stylesheet" href="/style.css" />
 
   <!-- Favicons -->
@@ -14,16 +15,16 @@
   <link rel='manifest' media='(prefers-color-scheme: dark)' href='/theme/dark/manifest.json' />
 
   <!-- Twitter Card data -->
-  <meta name="twitter:title" content="<%= title %>" />
+  <meta name="twitter:title" content="<%= headInfo.title %>" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:description" content="<%= description %>" />
-  <meta name="twitter:image" content="<%= image %>" />
+  <meta name="twitter:description" content="<%= headInfo.description %>" />
+  <meta name="twitter:image" content="<%= headInfo.image %>" />
 
   <!-- Open Graph data -->
-  <meta property="og:title" content="<%= title %>" />
+  <meta property="og:title" content="<%= headInfo.title %>" />
   <meta property="og:site_name" content="The Dragon Between" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="<%= url %>" />
-  <meta property="og:description" content="<%= description %>" />
-  <meta property="og:image" content="<%= image %>" />
+  <meta property="og:url" content="<%= headInfo.url %>" />
+  <meta property="og:description" content="<%= headInfo.description %>" />
+  <meta property="og:image" content="<%= headInfo.image %>" />
 </head>

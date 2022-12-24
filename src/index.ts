@@ -6,7 +6,7 @@ import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import pb from './connect.js'
 import getCharacters from './middlewares/get-characters.js'
-import getHeadInfo from './middlewares/get-head-info.js'
+import initViewInfo from './middlewares/init-view-info.js'
 
 const thisdir = dirname(fileURLToPath(import.meta.url))
 dotenv.config()
@@ -21,12 +21,12 @@ app.use(express.static('public'))
 app.set('view engine', 'ejs')
 app.set('views', join(thisdir, '../src/views'))
 
-app.get('/', getCharacters, getHeadInfo, (req: Request, res: Response) => {
-  res.render('pages/home', req.headInfo)
+app.get('/', initViewInfo, getCharacters, (req: Request, res: Response) => {
+  res.render('pages/home', req.viewInfo)
 })
 
-app.get('/login', getCharacters, getHeadInfo, (req: Request, res: Response) => {
-  res.render('pages/login', req.headInfo)
+app.get('/login', initViewInfo, getCharacters, (req: Request, res: Response) => {
+  res.render('pages/login', req.viewInfo)
 })
 
 app.get('/logout', (req: Request, res: Response) => {

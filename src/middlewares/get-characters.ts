@@ -3,7 +3,7 @@ import expressAsyncHandler from 'express-async-handler'
 import getCharacters from '../interfaces/character/get-characters.js'
 
 const getCharactersMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-  req.characters = await getCharacters()
+  req.viewInfo.characters = await getCharacters()
   next()
 }
 

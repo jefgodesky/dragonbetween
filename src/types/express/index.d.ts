@@ -4,8 +4,12 @@ import HeadInfo from '../../interfaces/head-info/index.js'
 declare global {
   namespace Express {
     interface Request {
-      characters?: Character[]
-      headInfo?: HeadInfo
+      viewInfo: {
+        authenticated: boolean
+        admin: boolean
+        characters?: Character[]
+        headInfo: HeadInfo
+      }
     }
   }
 }

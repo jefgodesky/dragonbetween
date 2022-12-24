@@ -31,6 +31,16 @@ input {
   }
 }
 
+.input-button-combo {
+  display: flex;
+
+  input,
+  select {
+    flex-grow: 1;
+    margin: 0 0.5em 0 0;
+  }
+}
+
 button,
 a.button {
   appearance: none;

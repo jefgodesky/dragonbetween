@@ -1,14 +1,46 @@
 <header>
+  <p class="login">
+    <% if (authenticated) { %>
+      <a href="/logout">Log out</a>
+    <% } else { %>
+      <a href="/login">Log in</a>
+    <% } %>
+  </p>
   <nav class="top">
     <form class="search">
-      <input type="search" name="query" placeholder="Search" />
-      <button>Go</button>
+      <label for="search">Search</label>
+      <div class="input-button-combo">
+        <input type="search" name="query" id="search" placeholder="Search" />
+        <button>Go</button>
+      </div>
     </form>
     <div class="pov-select">
       <% if (authenticated) { %>
-        <a href="/logout">Log out</a>
+        <form method="post" action="/pov">
+          <label for="pov">POV</label>
+          <div class="input-button-combo">
+            <select name="pov" id="pov">
+              <option value="0">Outsider</option>
+              <% for (const char of characters) { %>
+                <option value="<%= char.id %>"><%= char.name %></option>
+              <% } %>
+              <% if (admin) { %>
+                <option value="1">Game Master</option>
+              <% } %>
+            </select>
+            <button>Go</button>
+          </div>
+        </form>
       <% } else { %>
-        <a href="/login">Log in</a>
+          <form method="post" action="/pov">
+            <label for="pov">POV</label>
+              <div class="input-button-combo">
+              <select name="pov" id="pov">
+                <option value="0">Outsider</option>
+              </select>
+              <button>Go</button>
+            </div>
+          </form>
       <% } %>
     </div>
   </nav>

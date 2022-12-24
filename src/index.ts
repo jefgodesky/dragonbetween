@@ -5,6 +5,9 @@ import expressAsyncHandler from 'express-async-handler'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import pb from './connect.js'
+
+import addKnowledge from './middlewares/add-knowledge.js'
+import browse from './middlewares/browse.js'
 import getCharacters from './middlewares/get-characters.js'
 import initViewInfo from './middlewares/init-view-info.js'
 
@@ -33,6 +36,10 @@ app.get('/logout', (req: Request, res: Response) => {
   pb.authStore.clear()
   res.redirect(req.query.returnUrl as string ?? '/')
 })
+
+app.get('/lore', initViewInfo, getCharacters, addKnowledge, browse)
+
+app.get('/categories', initViewInfo, getCharacters, addKnowledge, browse)
 
 app.post('/login', expressAsyncHandler(async (req: Request, res: Response) => {
   const { username, password } = req.body

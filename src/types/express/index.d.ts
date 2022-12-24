@@ -13,7 +13,7 @@ declare global {
         returnUrl: string
         characters?: Character[]
         headInfo: HeadInfo
-        browse?: Array<{ link: string, label: string }>
+        browse?: Array<{ url: string, label: string }>
       }
     }
   }

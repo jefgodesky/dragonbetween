@@ -31,7 +31,7 @@ app.get('/login', initViewInfo, getCharacters, (req: Request, res: Response) => 
 
 app.get('/logout', (req: Request, res: Response) => {
   pb.authStore.clear()
-  res.redirect('/login')
+  res.redirect(req.query.returnUrl as string ?? '/')
 })
 
 app.post('/login', expressAsyncHandler(async (req: Request, res: Response) => {
@@ -41,7 +41,7 @@ app.post('/login', expressAsyncHandler(async (req: Request, res: Response) => {
   } catch (err) {
     console.error(err)
   }
-  res.redirect('/')
+  res.redirect(req.query.returnUrl as string ?? '/')
 }))
 
 app.listen(port, () => {

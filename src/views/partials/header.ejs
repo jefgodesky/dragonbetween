@@ -1,13 +1,14 @@
 <header>
   <p class="login">
     <% if (authenticated) { %>
-      <a href="/logout">Log out</a>
+      <a href="/logout?returnUrl=<%= returnUrl %>">Log out</a>
     <% } else { %>
-      <a href="/login">Log in</a>
+      <a href="/login?returnUrl=<%= returnUrl %>">Log in</a>
     <% } %>
   </p>
   <nav class="top">
     <form class="search">
+      <input type="hidden" name="returnUrl" value="<%= returnUrl %>" />
       <label for="search">Search</label>
       <div class="input-button-combo">
         <input type="search" name="query" id="search" placeholder="Search" />
@@ -15,33 +16,22 @@
       </div>
     </form>
     <div class="pov-select">
-      <% if (authenticated) { %>
-        <form method="post" action="/pov">
-          <label for="pov">POV</label>
-          <div class="input-button-combo">
-            <select name="pov" id="pov">
-              <option value="outsider">Outsider</option>
-              <% for (const char of characters) { %>
-                <option value="<%= char.id %>"><%= char.name %></option>
-              <% } %>
-              <% if (gm) { %>
-                <option value="gm">Game Master</option>
-              <% } %>
-            </select>
-            <button>Go</button>
-          </div>
-        </form>
-      <% } else { %>
-          <form method="post" action="/pov">
-            <label for="pov">POV</label>
-              <div class="input-button-combo">
-              <select name="pov" id="pov">
-                <option value="outsider">Outsider</option>
-              </select>
-              <button>Go</button>
-            </div>
-          </form>
-      <% } %>
+      <form method="post" action="/pov">
+        <input type="hidden" name="returnUrl" value="<%= returnUrl %>" />
+        <label for="pov">POV</label>
+        <div class="input-button-combo">
+          <select name="pov" id="pov">
+            <option>Outsider</option>
+            <% for (const char of characters) { %>
+              <option value="<%= char.id %>"><%= char.name %></option>
+            <% } %>
+            <% if (gm) { %>
+              <option value="gm">Game Master</option>
+            <% } %>
+          </select>
+          <button>Go</button>
+        </div>
+      </form>
     </div>
   </nav>
   <h1>

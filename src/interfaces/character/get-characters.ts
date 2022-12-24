@@ -8,7 +8,7 @@ export default async function getCharacters (): Promise<Character[]> {
   const sort = 'name'
   const filter = `player = "${model?.id ?? ''}"`
   const expand = 'knowledge(character).secret'
-  const records = isValid && model?.username === undefined
+  const records = isValid && model?.gm === true
     ? await pb.collection('characters').getFullList(undefined, { sort, expand })
     : await pb.collection('characters').getFullList(undefined, { filter, sort, expand })
   const characters: Character[] = []

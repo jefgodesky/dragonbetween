@@ -6,7 +6,7 @@ declare global {
     interface Request {
       viewInfo: {
         authenticated: boolean
-        admin: boolean
+        gm: boolean
         characters?: Character[]
         headInfo: HeadInfo
       }

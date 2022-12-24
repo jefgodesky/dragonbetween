@@ -19,7 +19,7 @@ describe('initViewInfo', () => {
   it('sets view info', () => {
     initViewInfo(mockReq, mockRes, mockNext)
     expect(mockReq.viewInfo.authenticated).to.equal(false)
-    expect(mockReq.viewInfo.admin).to.equal(false)
+    expect(mockReq.viewInfo.gm).to.equal(false)
     expect(isHeadInfo(mockReq.viewInfo.headInfo)).to.equal(true)
     expect(mockReq.viewInfo.headInfo?.title).to.equal('The Dragon Between')
     expect(mockReq.viewInfo.headInfo?.description).to.equal('Welcome to Eberron.')

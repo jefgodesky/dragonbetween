@@ -38,14 +38,8 @@ app.post('/login', expressAsyncHandler(async (req: Request, res: Response) => {
   const { username, password } = req.body
   try {
     await pb.collection('users').authWithPassword(username, password)
-  } catch (err: any) {
-    if (err.status === 400) {
-      try {
-        await pb.admins.authWithPassword(username, password)
-      } catch (err) {
-        console.error(err)
-      }
-    }
+  } catch (err) {
+    console.error(err)
   }
   res.redirect('/')
 }))

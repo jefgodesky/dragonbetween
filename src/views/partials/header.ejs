@@ -20,12 +20,12 @@
           <label for="pov">POV</label>
           <div class="input-button-combo">
             <select name="pov" id="pov">
-              <option value="0">Outsider</option>
+              <option value="outsider">Outsider</option>
               <% for (const char of characters) { %>
                 <option value="<%= char.id %>"><%= char.name %></option>
               <% } %>
-              <% if (admin) { %>
-                <option value="1">Game Master</option>
+              <% if (gm) { %>
+                <option value="gm">Game Master</option>
               <% } %>
             </select>
             <button>Go</button>
@@ -36,7 +36,7 @@
             <label for="pov">POV</label>
               <div class="input-button-combo">
               <select name="pov" id="pov">
-                <option value="0">Outsider</option>
+                <option value="outsider">Outsider</option>
               </select>
               <button>Go</button>
             </div>

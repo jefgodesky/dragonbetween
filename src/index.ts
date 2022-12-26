@@ -5,12 +5,11 @@ import expressAsyncHandler from 'express-async-handler'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import pb from './connect.js'
-import clear from './logic/clear.js'
-import renderText from './logic/renderers/text.js'
 
 import addKnowledge from './middlewares/add-knowledge.js'
 import browse from './middlewares/browse.js'
 import getCharacters from './middlewares/get-characters.js'
+import loadLore from './middlewares/load-lore.js'
 import initViewInfo from './middlewares/init-view-info.js'
 
 const thisdir = dirname(fileURLToPath(import.meta.url))
@@ -41,21 +40,9 @@ app.get('/logout', (req: Request, res: Response) => {
 
 app.get('/lore', initViewInfo, getCharacters, addKnowledge, browse)
 
-app.get('/lore/:slug', initViewInfo, getCharacters, addKnowledge, expressAsyncHandler(async (req: Request, res: Response) => {
-  const knowledge = req.knowledge ?? {}
-  const topic = await pb.collection('lore_topics')
-    .getFirstListItem(`slug = "${req.params.slug ?? ''}"`, { expand: 'lore_text(topic)' })
-  const known = clear(knowledge, topic.secret === '' ? 'true' : topic.secret)
-  const texts = topic.expand['lore_text(topic)'] === undefined
-    ? []
-    : topic.expand['lore_text(topic)']
-      .sort((a: any, b: any) => a.priority - b.priority)
-      .filter((text: any) => clear(knowledge, text.secret === '' ? 'true' : text.secret))
-  const title = known ? topic.title : 'What&rsquo;s that?'
-  const text = known && texts.length > 0 ? await renderText(texts[0].text, knowledge) : '<p>You&rsquo;ve never heard of such a thing.</p>'
-  req.viewInfo.lore = { title, text }
+app.get('/lore/:slug', initViewInfo, getCharacters, addKnowledge, loadLore, (req: Request, res: Response) => {
   res.render('pages/lore', req.viewInfo)
-}))
+})
 
 app.get('/categories', initViewInfo, getCharacters, addKnowledge, browse)
 

@@ -7,7 +7,7 @@ const browse = async (req: Request, res: Response, next: NextFunction): Promise<
   const roots = await pb.collection('categories').getFullList(undefined, { filter: 'parent = NULL' })
   req.viewInfo.browse = roots
     .filter(cat => clear(req.knowledge ?? {}, cat.secret === '' ? 'true' : cat.secret))
-    .map(cat => ({ url: `/${cat.slug as string ?? ''}`, label: cat.name }))
+    .map(cat => ({ url: `/categories/${cat.slug as string ?? ''}`, label: cat.name }))
   res.render('pages/browse', req.viewInfo)
 }
 

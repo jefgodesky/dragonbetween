@@ -13,7 +13,7 @@ body {
     background-size: contain, contain;
   }
 
-  @media (prefers-color-scheme: dark) {
+  &.dark-mode {
     background-color: #000;
     background-image: url('/theme/dark/top.png'), url('/theme/dark/bottom.png');
     color: #fff;

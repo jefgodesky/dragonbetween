@@ -18,14 +18,17 @@
       content: ' ';
       flex: 1 0 1em;
       margin: 0 1em 0 0;
-
-      @media (prefers-color-scheme: dark) {
-        border-top: 2px solid rgba(255, 255, 255, 0.5);
-      }
     }
 
     &:after {
       margin: 0 0 0 1em;
     }
+  }
+}
+
+.dark-mode .home .current-campaign {
+  h2:before,
+  h2:after {
+    border-top: 2px solid rgba(255, 255, 255, 0.5);
   }
 }

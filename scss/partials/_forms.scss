@@ -19,15 +19,16 @@ input {
   &:focus {
     border-color: #1f75fe;
   }
+}
 
-  @media (prefers-color-scheme: dark) {
-    background-color: #000;
-    color: #fff;
+.dark-mode select,
+.dark-mode input {
+  background-color: #000;
+  color: #fff;
 
-    &:hover,
-    &:focus {
-      border-color: #add8e6;
-    }
+  &:hover,
+  &:focus {
+    border-color: #add8e6;
   }
 }
 
@@ -65,18 +66,19 @@ a.button {
   &:active {
     background: #fe381f;
   }
+}
 
-  @media (prefers-color-scheme: dark) {
-    background: #4b61d1;
-    color: #fff;
+.dark-mode button,
+.dark-mode a.button {
+  background: #4b61d1;
+  color: #fff;
 
-    &:hover,
-    &:focus {
-      background: #8896e1;
-    }
+  &:hover,
+  &:focus {
+    background: #8896e1;
+  }
 
-    &:active {
-      background: #d14b61;
-    }
+  &:active {
+    background: #d14b61;
   }
 }

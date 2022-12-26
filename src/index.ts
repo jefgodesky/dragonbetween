@@ -6,7 +6,7 @@ import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import pb from './connect.js'
 import clear from './logic/clear.js'
-import renderMarkdown from './logic/renderers/markdown.js'
+import renderText from './logic/renderers/text.js'
 
 import addKnowledge from './middlewares/add-knowledge.js'
 import browse from './middlewares/browse.js'
@@ -52,7 +52,7 @@ app.get('/lore/:slug', initViewInfo, getCharacters, addKnowledge, expressAsyncHa
       .sort((a: any, b: any) => a.priority - b.priority)
       .filter((text: any) => clear(knowledge, text.secret === '' ? 'true' : text.secret))
   const title = known ? topic.title : 'What&rsquo;s that?'
-  const text = known && texts.length > 0 ? await renderMarkdown(texts[0].text, knowledge) : '<p>You&rsquo;ve never heard of such a thing.</p>'
+  const text = known && texts.length > 0 ? await renderText(texts[0].text, knowledge) : '<p>You&rsquo;ve never heard of such a thing.</p>'
   req.viewInfo.lore = { title, text }
   res.render('pages/lore', req.viewInfo)
 }))

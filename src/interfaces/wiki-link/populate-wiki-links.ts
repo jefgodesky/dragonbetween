@@ -1,9 +1,9 @@
 import rfdc from 'rfdc'
 import SqlString from 'sqlstring'
-import Knowledge from '../interfaces/knowledge/index.js'
-import WikiLink from '../interfaces/wiki-link/index.js'
-import pb from '../connect.js'
-import clear from './clear.js'
+import Knowledge from '../knowledge/index.js'
+import WikiLink from './index.js'
+import pb from '../../connect.js'
+import clear from '../../logic/clear.js'
 
 const clone = rfdc()
 

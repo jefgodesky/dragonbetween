@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import WikiLink from '../interfaces/wiki-link/index.js'
+import WikiLink from './index.js'
 import populateWikiLinks from './populate-wiki-links.js'
 
 describe('populateWikiLinks', () => {

@@ -6,6 +6,17 @@
     <main class="browse">
       <h1><%= lore.title %></h1>
       <%- lore.text %>
+      <% if (lore.categories && lore.categories.length > 0) { %>
+      <nav class="categories">
+        <ul>
+          <% for (const category of lore.categories) { %>
+            <li>
+              <a href="/categories/<%= category.slug %>"><%= category.label %></a>
+            </li>
+          <% } %>
+        </ul>
+      </nav>
+      <% } %>
     </main>
   </body>
 </html>

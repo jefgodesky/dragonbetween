@@ -16,7 +16,7 @@ const loadLore = async (req: Request, res: Response, next: NextFunction): Promis
       .filter((text: any) => clear(knowledge, text.secret === '' ? 'true' : text.secret))
   const title = known ? topic.title : 'What&rsquo;s that?'
   const text = known && texts.length > 0 ? await renderText(texts[0].text, knowledge) : '<p>You&rsquo;ve never heard of such a thing.</p>'
-  req.viewInfo.lore = { title, text }
+  req.viewInfo.lore = { title, text, categories: [] }
   next()
 }
 

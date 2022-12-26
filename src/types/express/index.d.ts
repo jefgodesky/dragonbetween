@@ -1,3 +1,4 @@
+import Categorization from '../../interfaces/categorization/index.js'
 import Character from '../../interfaces/character/index.js'
 import HeadInfo from '../../interfaces/head-info/index.js'
 import Knowledge from '../../interfaces/knowledge/index.js'
@@ -17,6 +18,7 @@ declare global {
         lore?: {
           title: string
           text: string
+          categories: Categorization[]
         }
       }
     }

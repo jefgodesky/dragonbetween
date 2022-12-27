@@ -1,5 +1,5 @@
 import addThemeOptions from './add-theme-options'
-import detectDarkMode from './detect-dark-mode'
+import setTheme from './set-theme'
 
 addThemeOptions()
-detectDarkMode()
+setTheme()

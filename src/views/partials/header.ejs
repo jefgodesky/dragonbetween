@@ -1,12 +1,13 @@
 <header>
-  <p class="login">
-    <% if (authenticated) { %>
-      <a href="/logout?returnUrl=<%= returnUrl %>">Log out</a>
-    <% } else { %>
-      <a href="/login?returnUrl=<%= returnUrl %>">Log in</a>
-    <% } %>
-  </p>
+  <input type="checkbox" id="open-nav-top" />
   <nav class="top">
+    <div class="login">
+      <% if (authenticated) { %>
+        <a href="/logout?returnUrl=<%= returnUrl %>">Log out</a>
+      <% } else { %>
+        <a href="/login?returnUrl=<%= returnUrl %>">Log in</a>
+      <% } %>
+    </div>
     <form class="search">
       <input type="hidden" name="returnUrl" value="<%= returnUrl %>" />
       <label for="search">Search</label>
@@ -15,30 +16,29 @@
         <button>Investigate</button>
       </div>
     </form>
-    <div class="pov-select">
-      <form method="post" action="/pov">
-        <input type="hidden" name="returnUrl" value="<%= returnUrl %>" />
-        <label for="pov">POV</label>
-        <div class="input-button-combo">
-          <select name="pov" id="pov">
-            <option>
-              Outsider
+    <form class="pov-select" method="post" action="/pov">
+      <input type="hidden" name="returnUrl" value="<%= returnUrl %>" />
+      <label for="pov">POV</label>
+      <div class="input-button-combo">
+        <select name="pov" id="pov">
+          <option>
+            Outsider
+          </option>
+          <% for (const char of characters) { %>
+            <option value="<%= char.id %>"<% if (pov === char.id) { %> selected="selected"<% } %>>
+              <%= char.name %>
             </option>
-            <% for (const char of characters) { %>
-              <option value="<%= char.id %>"<% if (pov === char.id) { %> selected="selected"<% } %>>
-                <%= char.name %>
-              </option>
-            <% } %>
-            <% if (gm) { %>
-              <option value="gm"<% if (pov === 'gm') { %> selected="selected"<% } %>>
-                Game Master
-              </option>
-            <% } %>
-          </select>
-          <button>Perceive</button>
-        </div>
-      </form>
-    </div>
+          <% } %>
+          <% if (gm) { %>
+            <option value="gm"<% if (pov === 'gm') { %> selected="selected"<% } %>>
+              Game Master
+            </option>
+          <% } %>
+        </select>
+        <button>Perceive</button>
+      </div>
+    </form>
+    <label id="open-nav-top-tab" for="open-nav-top"></label>
   </nav>
   <h1>
     <a href="/">

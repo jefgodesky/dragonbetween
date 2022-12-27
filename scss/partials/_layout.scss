@@ -7,7 +7,7 @@ body {
   background-repeat: no-repeat, no-repeat;
   background-size: cover, cover;
   min-height: 100vh;
-  padding-bottom: 8em;
+  padding: 1em 1em 8em 1em;
 
   @media (max-aspect-ratio: 3/1) {
     background-size: contain, contain;

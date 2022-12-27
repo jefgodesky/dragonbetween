@@ -4,7 +4,7 @@ label {
 }
 
 select,
-input {
+input:not([type='checkbox']):not([type='radio']) {
   appearance: none;
   background: #fff;
   border: 3px solid #888;
@@ -22,7 +22,7 @@ input {
 }
 
 .dark-mode select,
-.dark-mode input {
+.dark-mode input:not([type='checkbox']):not([type='radio']) {
   background-color: #000;
   color: #fff;
 
@@ -35,8 +35,8 @@ input {
 .input-button-combo {
   display: flex;
 
-  input,
-  select {
+  select,
+  input:not([type='checkbox']):not([type='radio']) {
     flex-grow: 1;
     margin: 0 0.5em 0 0;
   }

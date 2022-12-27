@@ -19,6 +19,14 @@ declare global {
           title: string
           text: string
           categories: Link[]
+        },
+        category?: {
+          title: string
+          description?: string
+          main?: Link
+          categories: Link[]
+          subcategories: Link[]
+          lore: Link[]
         }
       }
     }

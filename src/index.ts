@@ -9,6 +9,7 @@ import pb from './connect.js'
 import addKnowledge from './middlewares/add-knowledge.js'
 import browse from './middlewares/browse.js'
 import getCharacters from './middlewares/get-characters.js'
+import loadCategory from './middlewares/load-category.js'
 import loadLore from './middlewares/load-lore.js'
 import initViewInfo from './middlewares/init-view-info.js'
 
@@ -45,6 +46,10 @@ app.get('/lore/:slug', initViewInfo, getCharacters, addKnowledge, loadLore, (req
 })
 
 app.get('/categories', initViewInfo, getCharacters, addKnowledge, browse)
+
+app.get('/categories/:slug', initViewInfo, getCharacters, addKnowledge, loadCategory, (req: Request, res: Response) => {
+  res.render('pages/category', req.viewInfo)
+})
 
 app.post('/login', expressAsyncHandler(async (req: Request, res: Response) => {
   const { username, password } = req.body

@@ -1,6 +1,7 @@
 # Built files
 dist
 public/style.css
+public/bundle.js
 
 # Logs
 logs

@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "outDir": "./public/",
+    "noImplicitAny": true,
+    "module": "esnext",
+    "target": "es5",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "./js/**/*.ts"
+  ]
+}

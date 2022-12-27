@@ -6,7 +6,7 @@ import clear from '../logic/clear.js'
 const browse = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const roots = await pb.collection('categories').getFullList(undefined, { filter: 'parent = NULL' })
   req.viewInfo.browse = roots
-    .filter(cat => clear(req.knowledge ?? {}, cat.secret === '' ? 'true' : cat.secret))
+    .filter(cat => clear(req.knowledge ?? {}, cat.secret))
     .map(cat => ({ url: `/categories/${cat.slug as string ?? ''}`, label: cat.name }))
   res.render('pages/browse', req.viewInfo)
 }

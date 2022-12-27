@@ -17,16 +17,16 @@ const loadLore = async (req: Request, res: Response, next: NextFunction): Promis
   const mainExpansion = topic.expand[mainKey] === undefined ? [] : topic.expand[mainKey]
   const catExpansion = topic.expand[catKey] === undefined ? [] : topic.expand[catKey]
 
-  const known = clear(knowledge, topic.secret === '' ? 'true' : topic.secret)
+  const known = clear(knowledge, topic.secret)
   const texts = textExpansion
     .sort((a: any, b: any) => a.priority - b.priority)
-    .filter((text: any) => clear(knowledge, text.secret === '' ? 'true' : text.secret))
+    .filter((text: any) => clear(knowledge, text.secret))
   const title = known ? topic.title : 'What&rsquo;s that?'
   const text = known && texts.length > 0
     ? await renderText(texts[0].text, knowledge)
     : '<p>You&rsquo;ve never heard of such a thing.</p>'
-  const mains = mainExpansion.filter((cat: any) => clear(knowledge, cat.secret === '' ? 'true' : cat.secret))
-  const cats = catExpansion.map((cat: any) => cat.expand.category).filter((cat: any) => clear(knowledge, cat.secret === '' ? 'true' : cat.secret))
+  const mains = mainExpansion.filter((cat: any) => clear(knowledge, cat.secret))
+  const cats = catExpansion.map((cat: any) => cat.expand.category).filter((cat: any) => clear(knowledge, cat.secret))
   const categories = [...mains, ...cats].map((cat: any) => ({ slug: cat.slug, label: cat.name }))
   req.viewInfo.lore = { title, text, categories }
   next()

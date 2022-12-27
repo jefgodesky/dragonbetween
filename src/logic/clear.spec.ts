@@ -9,6 +9,10 @@ describe('clear', () => {
     expect(clear(knowledge)).to.equal(true)
   })
 
+  it('returns true for a null string secret', () => {
+    expect(clear(knowledge, '')).to.equal(true)
+  })
+
   it('returns true if it\'s in knowledge', () => {
     expect(clear(knowledge, 'secret1')).to.equal(true)
   })

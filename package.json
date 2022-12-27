@@ -17,8 +17,9 @@
     "build:server": "npx tsc --project tsconfig.server.json",
     "build:client": "webpack --mode production",
     "build:scss": "node sass.mjs",
-    "dev": "npm-run-all --parallel dev:build dev:serve",
-    "dev:build": "npx tsc --project tsconfig.server.json --watch",
+    "dev": "npm-run-all --parallel dev:build:server dev:build:client dev:serve",
+    "dev:build:server": "npx tsc --project tsconfig.server.json --watch",
+    "dev:build:client": "webpack --mode development --watch",
     "dev:serve": "nodemon -q dist/index.js"
   },
   "repository": {

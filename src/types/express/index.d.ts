@@ -1,7 +1,7 @@
-import Categorization from '../../interfaces/categorization/index.js'
 import Character from '../../interfaces/character/index.js'
 import HeadInfo from '../../interfaces/head-info/index.js'
 import Knowledge from '../../interfaces/knowledge/index.js'
+import Link from '../../interfaces/link/index.js'
 
 declare global {
   namespace Express {
@@ -18,7 +18,7 @@ declare global {
         lore?: {
           title: string
           text: string
-          categories: Categorization[]
+          categories: Link[]
         }
       }
     }

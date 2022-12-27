@@ -8,7 +8,7 @@ const loadLore = async (req: Request, res: Response, next: NextFunction): Promis
   const knowledge = req.knowledge ?? {}
   const textKey = 'lore_text(topic)'
   const mainKey = 'categories(main)'
-  const catKey = 'categorization(topic)'
+  const catKey = 'lore_categories(topic)'
   const expand = [textKey, mainKey, `${catKey}.category`].join(',')
 
   const topic = await pb.collection('lore_topics')
@@ -25,10 +25,9 @@ const loadLore = async (req: Request, res: Response, next: NextFunction): Promis
   const text = known && texts.length > 0
     ? await renderText(texts[0].text, knowledge)
     : '<p>You&rsquo;ve never heard of such a thing.</p>'
-  const categories = [
-    ...mainExpansion.map((cat: any) => ({ slug: cat.slug, label: cat.name })),
-    ...catExpansion.map((cat: any) => cat.expand.category).map((cat: any) => ({ slug: cat.slug, label: cat.name }))
-  ]
+  const mains = mainExpansion.filter((cat: any) => clear(knowledge, cat.secret === '' ? 'true' : cat.secret))
+  const cats = catExpansion.map((cat: any) => cat.expand.category).filter((cat: any) => clear(knowledge, cat.secret === '' ? 'true' : cat.secret))
+  const categories = [...mains, ...cats].map((cat: any) => ({ slug: cat.slug, label: cat.name }))
   req.viewInfo.lore = { title, text, categories }
   next()
 }

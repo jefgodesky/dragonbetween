@@ -9,13 +9,21 @@ const handleThemeOptionSet = (event: Event): void => {
 }
 
 export default function addThemeOptions (): void {
+  const theme = localStorage.getItem('theme')
   const before = document.querySelector('nav.top .login')
   if (before === null) return
 
-  const optLight = createElement('option', { value: 'light' }, 'Light')
-  const optDark = createElement('option', { value: 'dark' }, 'Dark')
-  const optOS = createElement('option', { value: 'os' }, 'Per OS')
-  const optTime = createElement('option', { value: 'time' }, 'Per time')
+  const attrs: { [key: string]: { [key: string]: string } } = {}
+  const themeOptions = ['light', 'dark', 'os', 'time']
+  for (const option of themeOptions) {
+    attrs[option] = { value: option }
+    if (theme === option) attrs[option].selected = 'selected'
+  }
+
+  const optLight = createElement('option', attrs.light, 'Light')
+  const optDark = createElement('option', attrs.dark, 'Dark')
+  const optOS = createElement('option', attrs.os, 'Per OS')
+  const optTime = createElement('option', attrs.time, 'Per time')
   const options = [optLight, optDark, optOS, optTime]
 
   const select = createElement('select', { name: 'theme' })

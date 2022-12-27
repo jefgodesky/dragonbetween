@@ -1,0 +1,12 @@
+.category section {
+  border-top: 1px solid #000;
+  padding: 1em 0;
+
+  h2 {
+    margin-top: 0;
+  }
+}
+
+.dark-mode .category section {
+  border-top: 1px solid #fff;
+}

@@ -6,9 +6,10 @@
     <main class="category">
       <h1><%= category.title %></h1>
       <% if (category.main) { %>
-        <p class="main-lore">Primary lore: <a href="/lore/<%= category.main.slug %>"><%- category.main.label %></a></p>
+        <p class="primary-lore">Primary lore: <a href="/lore/<%= category.main.slug %>"><%- category.main.label %></a></p>
       <% } %>
       <%- category.text %>
+      <br />
       <% if (category.subcategories && category.subcategories.length > 0) { %>
         <section class="subcategories">
           <h2>Subcategories</h2>
@@ -33,17 +34,21 @@
           </ul>
         </section>
       <% } %>
-      <% if (category.categories && category.categories.length > 0) { %>
-        <nav class="categories">
-          <ul>
+      <nav class="categories">
+        <ul>
+          <% if (category.categories && category.categories.length > 0) { %>
             <% for (const cat of category.categories) { %>
               <li>
                 <a href="/categories/<%= cat.slug %>"><%= cat.label %></a>
               </li>
             <% } %>
-          </ul>
-        </nav>
-      <% } %>
+          <% } else { %>
+            <li>
+              <a href="/categories">Root categories</a>
+            </li>
+          <% } %>
+        </ul>
+      </nav>
     </main>
     <%- include('../partials/footer') %>
   </body>

@@ -6,15 +6,17 @@
   "main": "index.js",
   "scripts": {
     "start": "npm-run-all build serve",
-    "test": "mocha --require ts-node/register",
-    "lint": "ts-standard",
+    "test": "npm-run-all test:server",
+    "test:server": "ts-mocha --project tsconfig.server.json src/**/*.spec.ts",
+    "lint": "npm-run-all lint:server",
+    "lint:server": "ts-standard --project tsconfig.server.json",
     "check": "npm-run-all lint test",
     "serve": "node dist/index.js",
     "build": "npm-run-all build:ts build:scss",
-    "build:ts": "npx tsc",
+    "build:ts": "npx tsc --project tsconfig.server.json",
     "build:scss": "node sass.mjs",
     "dev": "npm-run-all --parallel dev:build dev:serve",
-    "dev:build": "npx tsc --watch",
+    "dev:build": "npx tsc --project tsconfig.server.json --watch",
     "dev:serve": "nodemon -q dist/index.js"
   },
   "repository": {

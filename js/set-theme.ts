@@ -17,7 +17,7 @@ const detectDarkMode = (): void => {
 const sunIsDown = (): boolean => {
   const now = new Date()
   const year = now.getFullYear()
-  const leap = year % 400 === 0 || (year % 4 == 0 && year % 100 !== 0)
+  const leap = year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)
   const lastyear = new Date(year, 0, 0)
   const midnight = new Date(year, now.getMonth(), now.getDate())
   const diff = now.getTime() - lastyear.getTime()

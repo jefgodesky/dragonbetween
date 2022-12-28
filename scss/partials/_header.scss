@@ -19,8 +19,7 @@ header {
 }
 
 #open-nav-top-tab {
-  background: #b0e0e6 url(/theme/light/sigil.png) no-repeat center;
-  background-size: 2em;
+  background: #b0e0e6;
   bottom: -3.5em;
   cursor: pointer;
   display: block;
@@ -28,6 +27,16 @@ header {
   height: 3em;
   right: 1em;
   width: 3em;
+
+  &:before {
+    background: transparent url(/theme/light/sigil.png) no-repeat center;
+    background-size: 2em;
+    content: '';
+    display: block;
+    height: 3em;
+    transition: all 0.5s ease-in-out;
+    width: 3em;
+  }
 
   &:after {
     border-top: 1em solid #b0e0e6;
@@ -45,23 +54,34 @@ nav.top {
   @extend %layedout;
   background: #b0e0e6;
   box-shadow: 0 0 1em 1em rgba(0, 0, 0, 0.25);
-  height: 20em;
+  height: 17em;
   left: 0;
   padding: 1em;
   position: absolute;
   right: 0;
-  top: -22em;
+  top: -19em;
   transition: top 0.5s ease-in-out;
+
+  .login {
+    padding: 1em 0;
+  }
 }
 
 #open-nav-top:checked + nav.top {
   top: 0;
+
+  #open-nav-top-tab:before {
+    transform: rotate(180deg);
+  }
 }
 
 .dark-mode {
   #open-nav-top-tab {
-    background: #1e2952 url(/theme/dark/sigil.png) no-repeat center;
-    background-size: 2em;
+    background: #1e2952;
+
+    &:before {
+      background-image: url(/theme/dark/sigil.png);
+    }
 
     &:after {
       border-top: 1em solid #1e2952;

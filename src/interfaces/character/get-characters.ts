@@ -1,4 +1,5 @@
 import { Record } from 'pocketbase'
+import slugify from 'slugify'
 import Character from './index.js'
 import getKnowledge from '../knowledge/get-knowledge.js'
 import pb from '../../connect.js'
@@ -17,7 +18,8 @@ export default async function getCharacters (): Promise<Character[]> {
     const secrets = knowledgeRecords === undefined ? [] : knowledgeRecords.map((record: Record) => record.expand.secret).map((record: Record) => record.key)
     const knowledge = await getKnowledge(...secrets)
     const { id, name, strength, dexterity, constitution, intelligence, wisdom, charisma } = record
-    characters.push({ id, name, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma })
+    const slug = slugify(name).toLowerCase()
+    characters.push({ id, name, slug, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma })
   }
   return characters
 }

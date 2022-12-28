@@ -3,9 +3,9 @@
   <nav class="top">
     <div class="login">
       <% if (authenticated) { %>
-        <a href="/logout?returnUrl=<%= returnUrl %>">Log out</a>
+        <a href="/logout?returnUrl=<%= returnUrl %>" class="button">Log out</a>
       <% } else { %>
-        <a href="/login?returnUrl=<%= returnUrl %>">Log in</a>
+        <a href="/login?returnUrl=<%= returnUrl %>" class="button">Log in</a>
       <% } %>
     </div>
     <form class="search">

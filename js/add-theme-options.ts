@@ -26,7 +26,7 @@ export default function addThemeOptions (): void {
   const optTime = createElement('option', attrs.time, 'Per time')
   const options = [optLight, optDark, optOS, optTime]
 
-  const select = createElement('select', { name: 'theme' })
+  const select = createElement('select', { name: 'theme', id: 'theme-options' })
   for (const opt of options) {
     select.appendChild(opt)
   }
@@ -36,8 +36,10 @@ export default function addThemeOptions (): void {
   combo.appendChild(select)
   combo.appendChild(btn)
 
+  const label = createElement('label', { for: 'theme-options' }, 'Choose your theme')
   const form = createElement('form', { class: 'theme-options' })
   form.addEventListener('submit', handleThemeOptionSet)
+  form.appendChild(label)
   form.appendChild(combo)
   before.after(form)
 }

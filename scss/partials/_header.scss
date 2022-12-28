@@ -54,16 +54,21 @@ nav.top {
   @extend %layedout;
   background: #b0e0e6;
   box-shadow: 0 0 1em 1em rgba(0, 0, 0, 0.25);
-  height: 17em;
+  height: 21em;
   left: 0;
   padding: 1em;
   position: absolute;
   right: 0;
-  top: -19em;
+  top: -23em;
   transition: top 0.5s ease-in-out;
 
   .login {
     padding: 1em 0;
+
+    a {
+      text-align: center;
+      width: calc(100% - 2em);
+    }
   }
 }
 
@@ -72,6 +77,51 @@ nav.top {
 
   #open-nav-top-tab:before {
     transform: rotate(180deg);
+  }
+}
+
+@media (min-width: 60em) {
+  @supports (display: grid) {
+    nav.top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 0;
+      height: 12em;
+      top: -14em;
+
+      label {
+        margin-top: 0;
+      }
+
+      .login,
+      form {
+        padding: 1em;
+      }
+
+      .login {
+        display: block;
+        text-align: center;
+        padding-top: 2em;
+
+        a {
+          width: auto;
+        }
+      }
+
+      .login,
+      .theme-options {
+        border-bottom: 1px solid #000;
+      }
+
+      .login,
+      .search {
+        border-right: 1px solid #000;
+      }
+    }
+
+    #open-nav-top:checked + nav.top {
+      top: 0;
+    }
   }
 }
 
@@ -92,5 +142,19 @@ nav.top {
     background: #1e2952;
     box-shadow: 0 0 1em 1em #000;
     color: #fff;
+  }
+
+  @media (min-width: 60em) {
+    @supports (display: grid) {
+      nav.top .login,
+      nav.top .theme-options {
+        border-bottom: 1px solid #fff;
+      }
+
+      nav.top .login,
+      nav.top .search {
+        border-right: 1px solid #fff;
+      }
+    }
   }
 }

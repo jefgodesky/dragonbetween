@@ -4,6 +4,7 @@ import { isCharacter } from './index.js'
 describe('isCharacter', () => {
   const id = 'abc123'
   const name = 'Joe Average'
+  const slug = 'joe-average'
   const knowledge = {}
   const strength = 10
   const dexterity = 10
@@ -135,6 +136,51 @@ describe('isCharacter', () => {
 
   it('rejects a character with an object for a name', () => {
     const char = { name: { name }, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(false)
+  })
+
+  it('rejects a character with null for a slug', () => {
+    const char = { name, slug: null, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(false)
+  })
+
+  it('accepts a character with undefined for a slug', () => {
+    const char = { name, slug: undefined, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(true)
+  })
+
+  it('rejects a character with a function for a slug', () => {
+    const char = { name, slug: () => {}, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(false)
+  })
+
+  it('rejects a character with true for a slug', () => {
+    const char = { name, slug: true, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(false)
+  })
+
+  it('rejects a character with false for a slug', () => {
+    const char = { name, slug: false, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(false)
+  })
+
+  it('rejects a character with a number for a slug', () => {
+    const char = { name, slug: 24601, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(false)
+  })
+
+  it('accepts a character with a string for a slug', () => {
+    const char = { name, slug, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(true)
+  })
+
+  it('rejects a character with an array for a slug', () => {
+    const char = { name, slug: slug.split(''), knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
+    expect(isCharacter(char)).to.equal(false)
+  })
+
+  it('rejects a character with an object for a slug', () => {
+    const char = { name, slug: { slug }, knowledge, strength, dexterity, constitution, intelligence, wisdom, charisma }
     expect(isCharacter(char)).to.equal(false)
   })
 

@@ -9,7 +9,7 @@ const handleThemeOptionSet = (event: Event): void => {
 }
 
 export default function addThemeOptions (): void {
-  const theme = localStorage.getItem('theme')
+  const theme = localStorage.getItem('theme') ?? 'time'
   const before = document.querySelector('nav.top .login')
   if (before === null) return
 

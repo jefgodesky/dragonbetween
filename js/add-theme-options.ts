@@ -6,6 +6,7 @@ const handleThemeOptionSet = (event: Event): void => {
   const select = document.querySelector('nav.top .theme-options select')
   if (select === null) return
   localStorage.setItem('theme', (select as HTMLSelectElement).value)
+  window.location.reload()
 }
 
 export default function addThemeOptions (): void {

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <%- include('../partials/head') %>
+  <body>
+    <%- include('../partials/header') %>
+    <main>
+      <% if (gm) { %>
+        <h1>Characters</h1>
+        <ul>
+          <% for (const char of characters) { %>
+            <li>
+              <a href="/characters/<%= char.slug %>"><%= char.name %></a>
+            </li>
+          <% } %>
+        </ul>
+      <% } else { %>
+        <h1>Forbidden</h1>
+        <p>This page is for game masters only.</p>
+      <% } %>
+    </main>
+    <%- include('../partials/footer') %>
+  </body>
+</html>

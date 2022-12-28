@@ -51,6 +51,10 @@ app.get('/categories/:slug', initViewInfo, getCharacters, addKnowledge, loadCate
   res.render('pages/category', req.viewInfo)
 })
 
+app.get('/characters', initViewInfo, getCharacters, (req: Request, res: Response) => {
+  res.render('pages/characters', req.viewInfo)
+})
+
 app.post('/login', expressAsyncHandler(async (req: Request, res: Response) => {
   const { username, password } = req.body
   try {

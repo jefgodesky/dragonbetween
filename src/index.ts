@@ -13,6 +13,8 @@ import loadCategory from './middlewares/load-category.js'
 import loadLore from './middlewares/load-lore.js'
 import initViewInfo from './middlewares/init-view-info.js'
 
+import calculateModifier from './views/helpers/calculate-modifier.js'
+
 const thisdir = dirname(fileURLToPath(import.meta.url))
 dotenv.config()
 
@@ -25,6 +27,7 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
 app.set('views', join(thisdir, '../src/views'))
+app.locals.calculateModifier = calculateModifier
 
 app.get('/', initViewInfo, getCharacters, (req: Request, res: Response) => {
   res.render('pages/home', req.viewInfo)

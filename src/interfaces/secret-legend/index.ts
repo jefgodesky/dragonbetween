@@ -1,11 +1,9 @@
-import type = Mocha.utils.type;
+import Dictionary, { isDictionary } from '../dictionary/index.js'
 
 interface SecretLegend {
   label?: string
   path?: string[]
-  legend: {
-    [key: string]: string
-  }
+  legend: Dictionary
   children?: SecretLegend[]
 }
 
@@ -17,8 +15,7 @@ const isSecretLegend = (obj: any): obj is SecretLegend => {
   if (label !== undefined && typeof label !== 'string') return false
   if (!Array.isArray(path)) return false
   for (const elem of path) { if (typeof elem !== 'string') return false }
-  if (legend === null || Array.isArray(legend) || typeof legend !== 'object') return false
-  for (const key of Object.keys(legend)) { if (typeof legend[key] !== 'string') return false }
+  if (!isDictionary(legend)) return false
   if (children === undefined) return true
   if (!Array.isArray(children)) return false
   for (const child of children) { if (!isSecretLegend(child)) return false }

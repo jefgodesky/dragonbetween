@@ -28,4 +28,11 @@ describe('initViewInfo', () => {
     expect(mockReq.viewInfo.headInfo?.image).to.equal('https://dragonbetween.net/admin/api/files/vk7l0capdm862rn/25theoshrebup0r/social_2wlXVD4cnK.jpg')
     expect(mockNext.callCount).to.equal(1)
   })
+
+  it('sets return URL from query if provided', () => {
+    const returnUrl = '/test'
+    mockReq.query = { returnUrl }
+    initViewInfo(mockReq, mockRes, mockNext)
+    expect(mockReq.viewInfo.returnUrl).to.equal(returnUrl)
+  })
 })

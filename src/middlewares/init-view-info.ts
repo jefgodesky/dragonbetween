@@ -7,7 +7,7 @@ export default function initViewInfo (req: Request, res: Response, next: NextFun
   const authenticated = pb.authStore.isValid
   const gm = authenticated && pb.authStore.model?.gm === true
   const pov = pb.authStore.model?.pov ?? 'Outsider'
-  const returnUrl = originalUrl
+  const returnUrl = typeof req.query.returnUrl === 'string' ? req.query.returnUrl : originalUrl
   const title = 'The Dragon Between'
   const description = 'Welcome to Eberron.'
   const url = `${protocol}://${host ?? 'localhost:3000'}${originalUrl}`

@@ -23,7 +23,6 @@ describe('organizeLegends', () => {
       { legend: { 'PlanarConceptRisia': 'Risia is about preservation.' }, path: ['Planes', 'Planar concepts'] }
     ]
     const actual = organizeLegends(legends, categories) as any
-    console.log(JSON.stringify(actual))
     expect(actual[0].label).to.equal('Languages')
     expect(actual[0].children[0].label).to.equal('Mortal languages')
     expect(actual[0].children[0].children[0].label).to.equal('Khorvairian')

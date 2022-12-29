@@ -25,7 +25,7 @@ table {
   border-collapse: collapse;
   font-family: 'Alegreya Sans', sans-serif;
   margin: 1em -1em;
-  width: 100%;
+  width: calc(100% + 2em);
 }
 
 th {

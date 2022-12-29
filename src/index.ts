@@ -9,6 +9,7 @@ import pb from './connect.js'
 import addKnowledge from './middlewares/add-knowledge.js'
 import browse from './middlewares/browse.js'
 import getCharacters from './middlewares/get-characters.js'
+import getSecretLegend from './middlewares/get-secret-legend.js'
 import loadCategory from './middlewares/load-category.js'
 import loadLore from './middlewares/load-lore.js'
 import initViewInfo from './middlewares/init-view-info.js'
@@ -56,6 +57,14 @@ app.get('/categories/:slug', initViewInfo, getCharacters, addKnowledge, loadCate
 
 app.get('/characters', initViewInfo, getCharacters, (req: Request, res: Response) => {
   res.render('pages/characters', req.viewInfo)
+})
+
+app.get('/characters/:slug', initViewInfo, getCharacters, getSecretLegend, (req: Request, res: Response) => {
+  const longlist = req.viewInfo.characters === undefined ? [] : req.viewInfo.characters
+  const shortlist = longlist.filter(char => char.slug === req.params.slug)
+  req.viewInfo.character = shortlist.length > 0 ? shortlist[0] : undefined
+  console.log(req.viewInfo.character?.knowledge)
+  res.render('pages/character', req.viewInfo)
 })
 
 app.post('/login', expressAsyncHandler(async (req: Request, res: Response) => {

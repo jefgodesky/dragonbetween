@@ -1,0 +1,62 @@
+.abilities {
+  display: flex;
+  flex-wrap: wrap;
+
+  .ability {
+    flex: 1 0 33%;
+    font-family: 'Alegreya Sans', sans-serif;
+    text-align: center;
+    padding: 1em 0;
+
+    h3 {
+      font-size: 1em;
+      margin: 0;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.secret-legend {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 0.25em;
+  font-family: 'Alegreya Sans', sans-serif;
+  margin: 1em 0;
+  padding: 0.5em 1em;
+
+  summary {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  ul {
+    display: table;
+    list-style-type: none;
+    margin: 1em 0;
+    padding: 0;
+
+    li {
+      display: table-row;
+
+      input[type='checkbox'],
+      label {
+        display: table-cell;
+      }
+    }
+  }
+
+  label {
+    font-weight: normal;
+    padding-left: 0.5em;
+  }
+
+  input[type='checkbox'] {
+    display: inline;
+  }
+}
+
+.dark-mode .secret-legend {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <%- include('../partials/head') %>
+  <body>
+    <%- include('../partials/header') %>
+    <main>
+      <% if (gm && character) { %>
+        <h1><%= character.name %></h1>
+        <h2>Primary Abilities</h2>
+        <section class="abilities">
+          <div class="ability">
+            <h3>Strength</h3>
+            <p class="score"><%= character.strength %></p>
+            <p class="modifier">(<%= calculateModifier(character.strength) %>)</p>
+          </div>
+          <div class="ability">
+            <h3>Dexterity</h3>
+            <p class="score"><%= character.dexterity %></p>
+            <p class="modifier">(<%= calculateModifier(character.dexterity) %>)</p>
+          </div>
+          <div class="ability">
+            <h3>Constitution</h3>
+            <p class="score"><%= character.constitution %></p>
+            <p class="modifier">(<%= calculateModifier(character.constitution) %>)</p>
+          </div>
+          <div class="ability">
+            <h3>Intelligence</h3>
+            <p class="score"><%= character.intelligence %></p>
+            <p class="modifier">(<%= calculateModifier(character.intelligence) %>)</p>
+          </div>
+          <div class="ability">
+            <h3>Wisdom</h3>
+            <p class="score"><%= character.wisdom %></p>
+            <p class="modifier">(<%= calculateModifier(character.wisdom) %>)</p>
+          </div>
+          <div class="ability">
+            <h3>Charisma</h3>
+            <p class="score"><%= character.charisma %></p>
+            <p class="modifier">(<%= calculateModifier(character.charisma) %>)</p>
+          </div>
+        </section>
+        <h2>Secondary Abilities</h2>
+      <section class="abilities">
+        <div class="ability">
+          <h3>Fortitude</h3>
+          <p class="score"><%= Math.max(character.strength, character.constitution) %></p>
+          <p class="modifier">(<%= calculateModifier(Math.max(character.strength, character.constitution)) %>)</p>
+        </div>
+        <div class="ability">
+          <h3>Reflex</h3>
+          <p class="score"><%= Math.max(character.dexterity, character.intelligence) %></p>
+          <p class="modifier">(<%= calculateModifier(Math.max(character.dexterity, character.intelligence)) %>)</p>
+        </div>
+        <div class="ability">
+          <h3>Will</h3>
+          <p class="score"><%= Math.max(character.wisdom, character.charisma) %></p>
+          <p class="modifier">(<%= calculateModifier(Math.max(character.wisdom, character.charisma)) %>)</p>
+        </div>
+      </section>
+      <h3>Knowledge</h3>
+      <form method="post" action="/characters/<%= character.slug %>" class="knowledge">
+        <% for (const section of secrets) { %>
+          <%- include('../partials/secret-section', { section, character }) %>
+        <% } %>
+        <button>Update <%= character.name %>’s Knowledge</button>
+      </form>
+      <% } else if (gm) { %>
+        <h1>No character selected</h1>
+        <p><a href="/characters">Go back to the list</a> and select a character.</p>
+      <% } else { %>
+        <h1>Forbidden</h1>
+        <p>This page is for game masters only.</p>
+      <% } %>
+    </main>
+    <%- include('../partials/footer') %>
+  </body>
+</html>

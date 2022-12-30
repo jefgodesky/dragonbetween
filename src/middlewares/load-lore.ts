@@ -28,7 +28,11 @@ const loadLore = async (req: Request, res: Response, next: NextFunction): Promis
   const mains = mainExpansion.filter((cat: any) => clear(knowledge, cat.secret))
   const cats = catExpansion.map((cat: any) => cat.expand.category).filter((cat: any) => clear(knowledge, cat.secret))
   const categories = [...mains, ...cats].map((cat: any) => ({ slug: cat.slug, label: cat.name }))
+  const image = `https://dragonbetween.net/admin/api/files/${topic.collectionId}/${topic.id}/${topic.social_image}`
   req.viewInfo.lore = { title, text, categories }
+  req.viewInfo.headInfo.title = title
+  if (known && topic.description !== undefined) req.viewInfo.headInfo.description = topic.description
+  if (known && topic.social_image !== undefined) req.viewInfo.headInfo.image = image
   next()
 }
 

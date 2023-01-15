@@ -31,7 +31,7 @@ const loadLore = async (req: Request, res: Response, next: NextFunction): Promis
   req.viewInfo.lore = { title, text, categories }
   req.viewInfo.headInfo.title = title
   if (known && topic.description !== undefined) req.viewInfo.headInfo.description = topic.description
-  req.viewInfo.headInfo.image = (known && topic.social_image !== undefined)
+  req.viewInfo.headInfo.image = (known && topic.social_image !== '')
     ? `https://dragonbetween.net/admin/api/files/${topic.collectionId}/${topic.id}/${topic.social_image as string}`
     : req.viewInfo.headInfo.image
   next()

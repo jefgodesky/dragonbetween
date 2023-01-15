@@ -41,13 +41,15 @@
   background: rgba(255, 255, 255, 0.1);
   border-top: 0.25em solid #fff;
 
-  th,
-  td,
-  tr:nth-child(even) td {
-    background: rgba(255, 255, 255, 0.1);
-  }
+  .rnr-species {
+    th,
+    td,
+    tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.1);
+    }
 
-  th[colspan] {
-    background: rgba(255, 255, 255, 0.2);
+    th[colspan] {
+      background: rgba(255, 255, 255, 0.2);
+    }
   }
 }

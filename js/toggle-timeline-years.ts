@@ -14,7 +14,7 @@ const getSystem = (th: HTMLTableCellElement): string => {
   return ''
 }
 
-const toggleTimelineYears = () => {
+const toggleTimelineYears = (): void => {
   const timelines = document.querySelectorAll('table.timeline')
   for (const timeline of timelines) {
     const systems = [...timeline.querySelectorAll('th')]

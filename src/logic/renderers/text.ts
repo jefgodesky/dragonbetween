@@ -9,6 +9,6 @@ export default async function renderText (orig: string, knowledge: Knowledge = {
   const timelined = await renderTimelines(orig)
   const links = parseWikiLinks(timelined)
   const populated = await populateWikiLinks(links, knowledge)
-  const linked = renderWikiLinks(orig, populated)
+  const linked = renderWikiLinks(timelined, populated)
   return await renderMarkdown(linked, knowledge)
 }

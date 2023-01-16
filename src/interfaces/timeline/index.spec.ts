@@ -219,40 +219,4 @@ describe('isTimeline', () => {
   it('rejects an object with an object end property', () => {
     expect(isTimeline({ orig, end: { year: 998 } })).to.equal(false)
   })
-
-  it('accepts an object with an undefined filter property', () => {
-    expect(isTimeline({ orig, filter: undefined })).to.equal(true)
-  })
-
-  it('rejects an object with a null filter property', () => {
-    expect(isTimeline({ orig, filter: null })).to.equal(false)
-  })
-
-  it('rejects an object with a function filter property', () => {
-    expect(isTimeline({ orig, filter: () => {} })).to.equal(false)
-  })
-
-  it('rejects an object with a true filter property', () => {
-    expect(isTimeline({ orig, filter: true })).to.equal(false)
-  })
-
-  it('rejects an object with a false filter property', () => {
-    expect(isTimeline({ orig, filter: false })).to.equal(false)
-  })
-
-  it('rejects an object with a number filter property', () => {
-    expect(isTimeline({ orig, filter: 1 })).to.equal(false)
-  })
-
-  it('accepts an object with a string filter property', () => {
-    expect(isTimeline({ orig, filter: '1' })).to.equal(true)
-  })
-
-  it('rejects an object with an array filter property', () => {
-    expect(isTimeline({ orig, filter: [1, 2, 3] })).to.equal(false)
-  })
-
-  it('rejects an object with an object filter property', () => {
-    expect(isTimeline({ orig, filter: { year: 998 } })).to.equal(false)
-  })
 })

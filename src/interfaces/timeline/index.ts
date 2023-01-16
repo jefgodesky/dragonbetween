@@ -3,7 +3,6 @@ interface Timeline {
   tags?: string[]
   start?: number
   end?: number
-  filter?: string
 }
 
 const isTimeline = (obj: any): obj is Timeline => {
@@ -17,7 +16,6 @@ const isTimeline = (obj: any): obj is Timeline => {
   }
   if (start !== undefined && typeof start !== 'number') return false
   if (end !== undefined && typeof end !== 'number') return false
-  if (filter !== undefined && typeof filter !== 'string') return false
   return true
 }
 

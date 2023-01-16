@@ -11,10 +11,10 @@ describe('parseTimeline', () => {
   })
 
   it('can parse tags', () => {
-    const test = '<timeline tags="test1 test2 test3" />'
+    const test = '<timeline tags="Test with a space; A second test; Third" />'
     const timelines = parseTimeline(test)
-    expect(timelines[0]?.tags).to.have.lengthOf(3)
-    expect(timelines[0]?.tags?.join(' ')).to.equal('test1 test2 test3')
+    const expected = ['Test with a space', 'A second test', 'Third']
+    expect(JSON.stringify(timelines[0]?.tags)).to.equal(JSON.stringify(expected))
   })
 
   it('can parse start and end attributes', () => {

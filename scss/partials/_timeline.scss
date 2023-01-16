@@ -1,5 +1,9 @@
-.timeline td:first-child {
-  font-weight: bold;
-  vertical-align: top;
-  white-space: nowrap;
+.timeline {
+  .year-kingdom,
+  .year-unity,
+  .year-light {
+    font-weight: bold;
+    vertical-align: top;
+    white-space: nowrap;
+  }
 }

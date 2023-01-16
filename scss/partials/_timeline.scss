@@ -1,9 +1,43 @@
 .timeline {
   .year-kingdom,
   .year-unity,
-  .year-light {
+  .year-taratai {
     font-weight: bold;
     vertical-align: top;
     white-space: nowrap;
+  }
+
+  &.has-togglable-years {
+    .year-kingdom,
+    .year-unity,
+    .year-taratai {
+      display: none;
+      visibility: hidden;
+    }
+
+    &.show-year-kingdom .year-kingdom,
+    &.show-year-unity .year-unity,
+    &.show-year-taratai .year-taratai {
+      display: table-cell;
+      visibility: visible;
+    }
+  }
+}
+
+.year-selection {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  font-family: 'Alegreya Sans', sans-serif;
+  padding: 0 1em;
+
+  div {
+    display: inline-block;
+    padding: 0.5em 1.5em 0.5em 0;
+  }
+
+  label {
+    display: inline-block;
+    font-weight: normal;
+    margin: 0 0 0 0.25em;
   }
 }

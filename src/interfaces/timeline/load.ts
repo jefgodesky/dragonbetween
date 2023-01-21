@@ -1,24 +1,37 @@
 import Timeline from './index.js'
+import roundNearest from '../../logic/round-fifty.js'
 import createTimelineFilter from './create-filter.js'
 import pb from '../../connect.js'
+
+const getDate = (yk: number, system: 'YK' | 'YU' | 'YT', circa: boolean = false): string => {
+  const yu = yk + 412
+  const yt = yk + 787
+  const eras = {
+    YK: yk < 0 ? 'BYK' : 'YK',
+    YU: yu < 0 ? 'BU' : 'YU',
+    YT: yt < 0 ? 'BT' : 'YT'
+  }
+  const date = system === 'YU' ? Math.abs(yu) : system === 'YT' ? Math.abs(yt) : Math.abs(yk)
+  return circa
+    ? `c. ${roundNearest(date, 50)} ${eras[system]}`
+    : `${date} ${eras[system]}`
+}
 
 const loadTimeline = async (timeline: Timeline): Promise<string> => {
   const filter = createTimelineFilter(timeline)
   const sort = '+yk'
   const records = await pb.collection('timeline_events').getFullList(undefined, { filter, sort })
   const rows = records.map(record => {
-    const { event, secret, yk } = record
-    const yu = yk + 412
-    const yt = yk + 787
-    const readable = {
-      yk: yk < 0 ? `${yk * -1} BYK` : `${yk} YK`,
-      yu: yu < 0 ? `${yu * -1} BU` : `${yu} YU`,
-      yt: yt < 0 ? `${yt * -1} BT` : `${yt} YT`
+    const { event, secret, yk, circa } = record
+    const date = {
+      yk: getDate(yk, 'YK', circa),
+      yu: getDate(yk, 'YU', circa),
+      yt: getDate(yk, 'YT', circa),
     }
     const cells = [
-      `<td class="year-kingdom" data-secret="CommonKnowledgeKhorvaire">${readable.yk}</td>`,
-      `<td class="year-unity" data-secret="CommonKnowledgeSarlona">${readable.yu}</td>`,
-      `<td class="year-taratai" data-secret="CommonKnowledgeAdar">${readable.yt}</td>`,
+      `<td class="year-kingdom" data-secret="CommonKnowledgeKhorvaire">${date.yk}</td>`,
+      `<td class="year-unity" data-secret="CommonKnowledgeSarlona">${date.yu}</td>`,
+      `<td class="year-taratai" data-secret="CommonKnowledgeAdar">${date.yt}</td>`,
       `<td>${event}</td>`
     ]
     const interior = '\n  ' + cells.join('\n  ') + '\n'

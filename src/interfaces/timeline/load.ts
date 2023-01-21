@@ -12,8 +12,10 @@ const getDate = (yk: number, system: 'YK' | 'YU' | 'YT', circa: boolean = false)
     YT: yt < 0 ? 'BT' : 'YT'
   }
   const date = system === 'YU' ? Math.abs(yu) : system === 'YT' ? Math.abs(yt) : Math.abs(yk)
+  const rounded = roundNearest(date, 50)
+  const roundedFixed = rounded === 0 ? 1 : rounded
   return circa
-    ? `c. ${roundNearest(date, 50)} ${eras[system]}`
+    ? `c. ${roundedFixed} ${eras[system]}`
     : `${date} ${eras[system]}`
 }
 

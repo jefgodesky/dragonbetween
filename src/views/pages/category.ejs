@@ -8,7 +8,7 @@
       <% if (category.main) { %>
         <p class="primary-lore">Primary lore: <a href="/lore/<%= category.main.slug %>"><%- category.main.label %></a></p>
       <% } %>
-      <%- category.text %>
+      <%- category.description %>
       <br />
       <% if (category.subcategories && category.subcategories.length > 0) { %>
         <section class="subcategories">

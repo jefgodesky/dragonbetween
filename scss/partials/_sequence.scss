@@ -1,0 +1,56 @@
+@use '../modules/placeholders';
+
+nav.sequence ol {
+  @extend %box;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-gap: 0.5%;
+  list-style-type: none;
+  padding: 0;
+
+  .prev {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    text-align: left;
+  }
+
+  .curr {
+    font-weight: bold;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    text-align: center;
+  }
+
+  .next {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    text-align: right;
+  }
+
+  .prev,
+  .next {
+    position: relative;
+
+    a {
+      bottom: 0;
+      display: block;
+      left: 0;
+      padding: 1em;
+      position: absolute;
+      right: 0;
+      top: 0;
+      vertical-align: middle;
+    }
+  }
+
+  .prev,
+  .next,
+  .curr {
+    padding: 1em;
+    vertical-align: middle;
+  }
+}
+
+.dark-mode nav.sequence ol {
+  @extend %darkmode-box;
+}

@@ -2,3 +2,20 @@
   max-width: 35em;
   margin: 0 auto;
 }
+
+%box {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  font-family: 'Alegreya Sans', sans-serif;
+  margin: 1em;
+  padding: 1em;
+
+  @media (min-width: 50em) {
+    margin: 1em -1em;
+  }
+}
+
+%darkmode-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}

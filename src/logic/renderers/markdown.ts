@@ -15,7 +15,7 @@ import clear from '../clear.js'
 
 const schema = deepmerge(defaultSchema, {
   tagNames: ['header', 'section', 'aside', 'nav', 'footer'],
-  attributes: { '*': ['className', 'style'] }
+  attributes: { '*': ['className'], li: ['className'] }
 })
 
 export default async function renderMarkdown (markdown: string, knowledge: Knowledge = {}): Promise<string> {

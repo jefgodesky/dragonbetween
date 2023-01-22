@@ -14,7 +14,7 @@ import rehypeStringify from 'rehype-stringify'
 import clear from '../clear.js'
 
 const schema = deepmerge(defaultSchema, {
-  tagNames: ['header', 'section', 'aside', 'footer'],
+  tagNames: ['header', 'section', 'aside', 'nav', 'footer'],
   attributes: { '*': ['className', 'style'] }
 })
 

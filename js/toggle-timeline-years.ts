@@ -4,7 +4,8 @@ import createElement from './create-element'
 const dictionary: { [key: string]: string } = {
   'year-kingdom': 'Years of the Kingdom (YK)',
   'year-unity': 'Years of Unity (YU)',
-  'year-taratai': 'Years of Taratai (YT)'
+  'year-taratai': 'Years of Taratai (YT)',
+  'year-vol': 'Fall of the House (FH)'
 }
 
 const getSystem = (th: HTMLTableCellElement): string => {

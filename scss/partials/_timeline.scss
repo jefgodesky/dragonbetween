@@ -1,7 +1,8 @@
 .timeline {
   .year-kingdom,
   .year-unity,
-  .year-taratai {
+  .year-taratai,
+  .year-vol {
     font-weight: bold;
     vertical-align: top;
     white-space: nowrap;
@@ -10,14 +11,16 @@
   &.has-togglable-years {
     .year-kingdom,
     .year-unity,
-    .year-taratai {
+    .year-taratai,
+    .year-vol {
       display: none;
       visibility: hidden;
     }
 
     &.show-year-kingdom .year-kingdom,
     &.show-year-unity .year-unity,
-    &.show-year-taratai .year-taratai {
+    &.show-year-taratai .year-taratai,
+    &.show-year-vol .year-vol {
       display: table-cell;
       visibility: visible;
     }
